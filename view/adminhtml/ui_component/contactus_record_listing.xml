@@ -1,0 +1,135 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">contactus_record_listing.contactus_record_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>contactus_record_listing_columns</spinner>
+        <deps>
+            <dep>contactus_record_listing.contactus_record_listing_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="contactus_record_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="cacheRequests" xsi:type="boolean">false</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>AlexeyYermakov_ContactUs::record</aclResource>
+        <dataProvider class="AlexeyYermakov\ContactUs\Ui\DataProvider\RecordDataProvider" name="contactus_record_listing_data_source">
+            <settings>
+                <requestFieldName>record_id</requestFieldName>
+                <primaryFieldName>record_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <listingToolbar name="listing_top">
+        <settings>
+            <sticky>true</sticky>
+        </settings>
+        <bookmark name="bookmarks"/>
+        <columnsControls name="columns_controls"/>
+        <filterSearch name="email">
+            <settings>
+                <placeholder translate="true">Search by email</placeholder>
+            </settings>
+        </filterSearch>
+        <filters name="listing_filters">
+            <settings>
+                <templates>
+                    <filters>
+                        <select>
+                            <param name="template" xsi:type="string">ui/grid/filters/elements/ui-select</param>
+                            <param name="component" xsi:type="string">Magento_Ui/js/form/element/ui-select</param>
+                        </select>
+                    </filters>
+                </templates>
+            </settings>
+        </filters>
+        <massaction name="listing_massaction">
+            <action name="delete">
+                <settings>
+                    <confirm>
+                        <message translate="true">Are you sure you want to delete selected items?</message>
+                        <title translate="true">Delete items</title>
+                    </confirm>
+                    <url path="contactus/record/massDelete"/>
+                    <type>delete</type>
+                    <label translate="true">Delete</label>
+                </settings>
+            </action>
+        </massaction>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+    <columns name="contactus_record_listing_columns">
+        <selectionsColumn name="ids" sortOrder="10">
+            <settings>
+                <indexField>record_id</indexField>
+            </settings>
+        </selectionsColumn>
+        <column name="record_id" sortOrder="20">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">Record id</label>
+                <visible>true</visible>
+                <sorting>desc</sorting>
+            </settings>
+        </column>
+        <column name="name" sortOrder="30">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Name</label>
+                <visible>true</visible>
+            </settings>
+        </column>
+        <column name="comment" sortOrder="40">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Text</label>
+                <visible>true</visible>
+            </settings>
+        </column>
+        <column name="email" sortOrder="50">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Email</label>
+                <visible>true</visible>
+            </settings>
+        </column>
+        <column name="phone" sortOrder="60">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Phone</label>
+                <visible>true</visible>
+            </settings>
+        </column>
+        <column name="status" component="Magento_Ui/js/grid/columns/select" sortOrder="70">
+            <settings>
+                <label translate="true">Answered</label>
+                <filter>select</filter>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
+                <options>
+                    <option name="0" xsi:type="array">
+                        <item name="value" xsi:type="number">1</item>
+                        <item name="label" xsi:type="string" translate="true">Yes</item>
+                    </option>
+                    <option name="1" xsi:type="array">
+                        <item name="value" xsi:type="number">0</item>
+                        <item name="label" xsi:type="string" translate="true">No</item>
+                    </option>
+                </options>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="AlexeyYermakov\ContactUs\Ui\Component\Listing\Column\ViewAction" sortOrder="200">
+            <settings>
+                <indexField>record_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">contactus_record_form.contactus_record_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Record Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <dataScope>data</dataScope>
+        <namespace>contactus_record_form</namespace>
+        <deps>
+            <dep>contactus_record_form.contactus_record_form_data_source</dep>
+        </deps>
+        <buttons>
+            <button name="back">
+                <url path="*/index/index"/>
+                <class>back</class>
+                <label translate="true">Back</label>
+            </button>
+            <button name="save" class="AlexeyYermakov\ContactUs\Block\Adminhtml\Record\Edit\SaveButton"/>
+        </buttons>
+    </settings>
+    <dataSource name="contactus_record_form_data_source" component="Magento_Ui/js/form/provider">
+        <settings>
+            <submitUrl path="contactus/record/savePost"/>
+        </settings>
+        <dataProvider class="AlexeyYermakov\ContactUs\Ui\DataProvider\RecordDataProvider" name="contactus_record_form_data_source">
+            <settings>
+                <requestFieldName>record_id</requestFieldName>
+                <primaryFieldName>record_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general" sortOrder="10">
+        <settings>
+            <label translate="true">Record</label>
+            <collapsible>false</collapsible>
+            <opened>true</opened>
+            <dataScope>general</dataScope>
+        </settings>
+        <field name="record_id" formElement="hidden" sortOrder="10"/>
+        <field name="name" formElement="input" sortOrder="20">
+            <settings>
+                <disabled>true</disabled>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true">Name</label>
+            </settings>
+        </field>
+        <field name="email" formElement="input" sortOrder="30">
+            <settings>
+                <disabled>true</disabled>
+                <dataType>text</dataType>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true">Email</label>
+            </settings>
+        </field>
+        <field name="phone" formElement="input" sortOrder="40">
+            <settings>
+                <disabled>true</disabled>
+                <dataType>text</dataType>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true">Telephone</label>
+            </settings>
+        </field>
+        <field name="comment" formElement="textarea" sortOrder="50">
+            <settings>
+                <disabled>true</disabled>
+                <dataType>text</dataType>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true">Comment</label>
+            </settings>
+        </field>
+        <field name="reply" formElement="textarea" sortOrder="60">
+            <settings>
+                <disabled>true</disabled>
+                <dataType>text</dataType>
+                <elementTmpl>ui/form/element/html</elementTmpl>
+                <label translate="true">Reply</label>
+            </settings>
+        </field>
+        <field name="status" formElement="select" sortOrder="60">
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Answered</label>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options>
+                            <option name="0" xsi:type="array">
+                                <item name="value" xsi:type="number">1</item>
+                                <item name="label" xsi:type="string" translate="true">Yes</item>
+                            </option>
+                            <option name="1" xsi:type="array">
+                                <item name="value" xsi:type="number">0</item>
+                                <item name="label" xsi:type="string" translate="true">No</item>
+                            </option>
+                        </options>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+    </fieldset>
+</form>
