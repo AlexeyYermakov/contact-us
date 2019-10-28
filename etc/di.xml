@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Contact\Controller\Index\Post" type="AlexeyYermakov\ContactUs\Controller\Index\Post" />
+    <preference for="AlexeyYermakov\ContactUs\Api\Data\RecordInterface" type="AlexeyYermakov\ContactUs\Model\Record" />
+    <preference for="AlexeyYermakov\ContactUs\Api\RecordRepositoryInterface" type="AlexeyYermakov\ContactUs\Model\RecordRepository" />
+</config>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="AlexeyYermakov_ContactUs::record"
+             title="Contact Us Records"
+             translate="title"
+             module="AlexeyYermakov_ContactUs"
+             sortOrder="110"
+             parent="Magento_Backend::marketing_communications"
+             action="contactus/index/index"
+             resource="AlexeyYermakov_ContactUs::record"/>
+    </menu>
+</config>

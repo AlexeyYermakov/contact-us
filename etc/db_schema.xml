@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="ay_contactus_records" resource="default" engine="innodb">
+        <column xsi:type="int" name="record_id" padding="10" unsigned="true" nullable="false" identity="true"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255"/>
+        <column xsi:type="varchar" name="email" nullable="false" length="255"/>
+        <column xsi:type="text" name="comment" nullable="false"/>
+        <column xsi:type="text" name="reply" nullable="true"/>
+        <column xsi:type="varchar" name="phone" nullable="true" length="255"/>
+        <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="true" identity="false"/>
+        <column xsi:type="tinyint" name="status" padding="2" unsigned="true" nullable="false" identity="false" default="0"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true"  nullable="true" default="CURRENT_TIMESTAMP"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="record_id"/>
+        </constraint>
+    </table>
+</schema>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">contactus_reply_form.contactus_reply_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Record Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <dataScope>data</dataScope>
+        <namespace>contactus_reply_form</namespace>
+        <deps>
+            <dep>contactus_reply_form.contactus_reply_form_data_source</dep>
+        </deps>
+        <buttons>
+            <button name="back">
+                <url path="*/index/index"/>
+                <class>back</class>
+                <label translate="true">Back</label>
+            </button>
+            <button name="save" class="AlexeyYermakov\ContactUs\Block\Adminhtml\Record\Edit\ReplyButton"/>
+        </buttons>
+    </settings>
+    <dataSource name="contactus_reply_form_data_source" component="Magento_Ui/js/form/provider">
+        <settings>
+            <submitUrl path="contactus/record/replyPost"/>
+        </settings>
+        <dataProvider class="AlexeyYermakov\ContactUs\Ui\DataProvider\RecordDataProvider" name="contactus_reply_form_data_source">
+            <settings>
+                <requestFieldName>record_id</requestFieldName>
+                <primaryFieldName>record_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general" sortOrder="10">
+        <settings>
+            <label/>
+            <collapsible>false</collapsible>
+            <opened>true</opened>
+            <dataScope>general</dataScope>
+        </settings>
+        <field name="record_id" formElement="hidden" sortOrder="20"/>
+        <field name="comment" formElement="textarea" sortOrder="50">
+            <settings>
+                <disabled>true</disabled>
+                <dataType>text</dataType>
+                <elementTmpl>ui/form/element/text</elementTmpl>
+                <label translate="true">Comment</label>
+            </settings>
+        </field>
+        <field name="reply" template="ui/form/field" sortOrder="50" formElement="wysiwyg">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">reply</item>
+                    <item name="wysiwygConfigData" xsi:type="array">
+                        <item name="height" xsi:type="string">100px</item>
+                        <item name="toggle_button" xsi:type="boolean">false</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Reply text</label>
+                <dataScope>reply</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <wysiwyg>
+                    <settings>
+                        <rows>8</rows>
+                        <wysiwyg>true</wysiwyg>
+                    </settings>
+                </wysiwyg>
+            </formElements>
+        </field>
+    </fieldset>
+</form>
